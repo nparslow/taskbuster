@@ -13,11 +13,18 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
-from .views import home
+from .views import home, home_files
+from django.conf.urls.i18n import i18n_patterns # for internationalisation
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^$', home, name='home')
+    # the robots and humans texts we don't want to be under a /en/ or /ca/ sub heading so they are here
+    url(r'^(?P<filename>(robots.txt)|(humans.txt))$', home_files, name='home-files'),
 ]
+
+urlpatterns += i18n_patterns(
+    # these will occur under /en/ and /ca/ suburls:
+    url(r'^admin/', admin.site.urls),
+    url(r'^$', home, name='home'),
+)

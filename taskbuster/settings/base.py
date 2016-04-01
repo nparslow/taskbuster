@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 from django.core.exceptions import ImproperlyConfigured
+from django.utils.translation import ugettext_lazy as _ # for translation
+# note 'ugettext_lazy' translates only when rendering, while 'ugettext' translates straight away
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -54,6 +56,7 @@ INSTALLED_APPS = [
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware', # needs to be in this position (used for multi-language)
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -72,6 +75,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.i18n', # for multi-language (?)
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
@@ -119,15 +123,25 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-us' # this will be the default
 
-TIME_ZONE = 'UTC'
+LANGUAGES = (
+    ('en', _('English')),
+    ('ca', _('Catalan')),
+)
+# specify the 'locale' folder we added for translations
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
+
+#TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Paris'
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = True # uses the locale settings to change date and time formats
 
-USE_TZ = True
+USE_TZ = True # uses timezone support, also recommended to have the package 'pytz'
 
 
 # Static files (CSS, JavaScript, Images)
