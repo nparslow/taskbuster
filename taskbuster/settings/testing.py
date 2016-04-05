@@ -14,3 +14,10 @@ DATABASES = {
         'PORT': '',
     }
 }
+
+FIXTURE_DIRS = (
+    os.path.join(BASE_DIR, 'fixtures'),
+    )
+
+#SITE_ID = 3 # this depends on http://127.0.0.1:8000/en/admin/sites/site/
+# we started with example.com in there, I deleted that so our first site is actually no. 2

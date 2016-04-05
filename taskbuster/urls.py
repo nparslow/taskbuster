@@ -21,6 +21,9 @@ from django.conf.urls.i18n import i18n_patterns # for internationalisation
 urlpatterns = [
     # the robots and humans texts we don't want to be under a /en/ or /ca/ sub heading so they are here
     url(r'^(?P<filename>(robots.txt)|(humans.txt))$', home_files, name='home-files'),
+    # next line is to skip a confirmation page when logging out:
+    url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}),
+    url(r'^accounts/', include('allauth.urls')),
 ]
 
 urlpatterns += i18n_patterns(

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -7,6 +8,7 @@ from selenium.common.exceptions import TimeoutException
 from django.core.urlresolvers import reverse
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.utils.translation import activate
+
 
 class TestGoogleLogin(StaticLiveServerTestCase):
 
@@ -36,8 +38,9 @@ class TestGoogleLogin(StaticLiveServerTestCase):
         import json
         with open("taskbuster/fixtures/google_user.json") as f:
             credentials = json.loads(f.read())
-        for key, value in credentials.items():
-            self.get_element_by_id(key).send_keys(value)
+        self.get_element_by_id("Email").send_keys(credentials["Email"])
+        self.get_button_by_id("next").click()
+        self.get_element_by_id("Passwd").send_keys(credentials["Passwd"])
         for btn in ["signIn", "submit_approve_access"]:
             self.get_button_by_id(btn).click()
         return

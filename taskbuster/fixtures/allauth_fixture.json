@@ -4,7 +4,7 @@
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$24000$YfwwI09kFOdv$WtkbpbgyQvpfFn7xSJKu/jGMGzJQ2Gc6KjIONavdzXs=",
-    "last_login": "2016-04-04T15:19:39.672Z",
+    "last_login": "2016-04-05T11:47:33.449Z",
     "is_superuser": true,
     "username": "nparslow",
     "first_name": "",
@@ -18,11 +18,19 @@
   }
 },
 {
+  "model": "sessions.session",
+  "pk": "cwdyy8ow42v2w4wc9tkke79a3m93j3uu",
+  "fields": {
+    "session_data": "ODJmMzVkYmI4M2RhODJhYjY4Y2EwZTM2ZTViYWFiNTUxZDM3OTJhYjp7Il9hdXRoX3VzZXJfaGFzaCI6IjNhYjMxZDI2Y2UzOGQwYzk0M2Y0NTY2N2YxNzc1NjQyZmE5NTI1MGYiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=",
+    "expire_date": "2016-04-19T11:47:33.516Z"
+  }
+},
+{
   "model": "sites.site",
   "pk": 2,
   "fields": {
     "domain": "127.0.0.1:8000",
-    "name": "1"
+    "name": "siteID is 2"
   }
 },
 {
@@ -30,7 +38,7 @@
   "pk": 3,
   "fields": {
     "domain": "http://localhost:8081",
-    "name": "2"
+    "name": "siteID is 3"
   }
 },
 {
@@ -117,6 +125,42 @@
     "object_repr": "http://localhost:8081",
     "action_flag": 1,
     "change_message": "Added."
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2016-04-05T11:48:25.170Z",
+    "user": [
+      "nparslow"
+    ],
+    "content_type": [
+      "sites",
+      "site"
+    ],
+    "object_id": "2",
+    "object_repr": "127.0.0.1:8000",
+    "action_flag": 2,
+    "change_message": "Changed name."
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2016-04-05T11:48:40.369Z",
+    "user": [
+      "nparslow"
+    ],
+    "content_type": [
+      "sites",
+      "site"
+    ],
+    "object_id": "3",
+    "object_repr": "http://localhost:8081",
+    "action_flag": 2,
+    "change_message": "Changed name."
   }
 }
 ]
