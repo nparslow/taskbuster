@@ -61,6 +61,10 @@ INSTALLED_APPS += (
     'allauth.socialaccount',
     # Login via Google
     'allauth.socialaccount.providers.google',
+    # Login via Twitter
+    'allauth.socialaccount.providers.twitter',
+    # our taskmanager app:
+    'taskbuster.apps.taskmanager',
 )
 
 SITE_ID = 2 # this depends on http://127.0.0.1:8000/en/admin/sites/site/
